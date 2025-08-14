@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fase1.unity
     guid: 3bd274f9d6132334aaab17e76ccc4c81
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3dfd41b8cd439694caaed78d297fef7e
+  - enabled: 1
+    path: Assets/Scenes/creditos.unity
+    guid: 49f40165646aaef42b2b1b612d17bfc1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

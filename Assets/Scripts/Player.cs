@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -84,7 +85,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Trap"))
         {
             animator.SetTrigger("Hit");
-            StartCoroutine(Destruir());
+            StartCoroutine(GameOver());
         }
     }
 
@@ -109,12 +110,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator Destruir()
+    IEnumerator GameOver()
     {
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("EstaVivo", false);
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        SceneManager.LoadScene("GameOver");
     }
 
 }

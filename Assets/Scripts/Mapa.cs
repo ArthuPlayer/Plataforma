@@ -9,7 +9,7 @@ public class Mapa : MonoBehaviour
 
     private void Awake()
     {
-        if (saveGame != null)
+        if(saveGame != null)
         {
             saveGame = FindFirstObjectByType<SaveGame>();
         }
@@ -26,7 +26,7 @@ public class Mapa : MonoBehaviour
 
         foreach (GameObject fase in fases)
         {
-            if (saveGame.VerificarSaveGame(fase.name))
+            if(saveGame.VerificarSaveGame(fase.name) || saveGame.VerificarSaveCheckPoint(fase.name))
             {
                 AtivarFase(fase);
                 ultimoSave++;
@@ -44,7 +44,7 @@ public class Mapa : MonoBehaviour
 
     private void ProximaFase(string faseNome)
     {
-        foreach (GameObject fase in fases)
+        foreach(GameObject fase in fases)
         {
             if (fase.name == faseNome)
             {
@@ -52,6 +52,6 @@ public class Mapa : MonoBehaviour
                 fase.GetComponent<Image>().color = Color.magenta;
             }
         }
+     
     }
 }
-

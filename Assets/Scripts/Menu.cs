@@ -6,11 +6,12 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private SaveGame saveGame;
     [SerializeField] private GameObject continuaButton;
-
+    [SerializeField] private Vector3 localCheckPoint;
 
     private void Awake()
     {
-        if (saveGame.VerificarSaveGame("Fase1"))
+        if(saveGame.VerificarSaveGame("Fase1") && continuaButton != null
+            || saveGame.VerificarSaveCheckPoint("Fase1") && continuaButton != null)
         {
             continuaButton.GetComponent<Button>().interactable = true;
         }
@@ -38,7 +39,7 @@ public class Menu : MonoBehaviour
     {
         if (saveGame != null)
         {
-            saveGame.SalvarJogo(SceneManager.GetActiveScene().name, 54.1f);
+            saveGame.SalvarCheckpoint(SceneManager.GetActiveScene().name, 100f, localCheckPoint);
             Debug.Log("Fase salva com sucesso, no checkpoint.");
         }
         else
@@ -54,5 +55,4 @@ public class Menu : MonoBehaviour
             saveGame.ResetarSave();
         }
     }
-
 }

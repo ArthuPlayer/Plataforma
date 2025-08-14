@@ -13,8 +13,18 @@ public class SaveGame : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void SalvarCheckpoint(string fase, float pontos, Vector3 local)
+    {
+        PlayerPrefs.SetInt("Check" + fase, 1); // Ex. CheckFase1
+        PlayerPrefs.SetFloat("Pontos", pontos);
+        PlayerPrefs.SetFloat("CheckPosX" + fase, local.x); //CheckPosXFase1
+        PlayerPrefs.SetFloat("CheckPosY" + fase, local.y);
+        PlayerPrefs.SetFloat("CheckPosZ" + fase, local.z);
+        PlayerPrefs.Save();
+    }
+
     // Método para carregar o estado do jogo
-    public void CarregarJogo()
+    public void CarregarPontos()
     {
         pontos = PlayerPrefs.GetFloat("Pontos");
     }
@@ -22,13 +32,19 @@ public class SaveGame : MonoBehaviour
     //Verifica se tem save
     public bool VerificarSaveGame(string nomeFase)
     {
-        bool temSave = PlayerPrefs.HasKey(nomeFase) &&
+        bool temSave = PlayerPrefs.HasKey(nomeFase) && 
                             PlayerPrefs.HasKey("Pontos");
         return temSave;
     }
 
-    // Métodos para obter os valores carregados
+    public bool VerificarSaveCheckPoint(string nomeFase)
+    {
+        bool temSave = PlayerPrefs.HasKey("Check" + nomeFase);
+        return temSave;
+    }
 
+    // Métodos para obter os valores carregados
+    
     public float GetPontos()
     {
         return pontos;
@@ -38,7 +54,6 @@ public class SaveGame : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         pontos = 0f;
-        Debug.Log("Todos os saves foram resetados");
+        Debug.Log("Todos os saves foram resetados.");
     }
 }
-
